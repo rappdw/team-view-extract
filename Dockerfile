@@ -9,6 +9,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y \
         cron \
+        curl \
         ca-certificates \
         gcc \
         git \
@@ -40,6 +41,11 @@ RUN set -eux; \
     apt-get clean; \
     rm -rf /var/tmp /tmp /var/lib/apt/lists/*; \
     mkdir -p /var/tmp /tmp
+
+RUN set -eux; \
+    curl -SL https://github.com/git-lfs/git-lfs/releases/download/v2.4.2/git-lfs-linux-amd64-2.4.2.tar.gz | tar xzv; \
+    ./git-lfs-2.4.2/install.sh; \
+    rm -rf git-lfs-2.4.2
 
 RUN git clone https://github.com/rappdw/tokei.git; \
     cd tokei; \
