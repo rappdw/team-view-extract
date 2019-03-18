@@ -13,7 +13,9 @@ RUN set -eux; \
         ca-certificates \
         gcc \
         git \
+        less \
         libc6-dev \
+        vim \
         wget \
         ; \
     dpkgArch="$(dpkg --print-architecture)"; \
@@ -38,8 +40,7 @@ RUN set -eux; \
         wget \
         ; \
     apt-get clean; \
-    rm -rf /var/tmp /tmp /var/lib/apt/lists/*; \
-    mkdir -p /var/tmp /tmp
+    rm -rf /var/tmp/* /tmp/* /var/lib/apt/lists/*
 
 RUN set -eux; \
     curl -SL https://github.com/git-lfs/git-lfs/releases/download/v2.4.2/git-lfs-linux-amd64-2.4.2.tar.gz | tar xzv; \
