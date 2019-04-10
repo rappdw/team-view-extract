@@ -52,7 +52,9 @@ RUN git clone https://github.com/rappdw/tokei.git; \
     cargo build --release; \
     mv target/release/tokei /usr/local/bin
 
-RUN pip install --no-cache-dir tv-extract
+# the echo "x" is in place to allow easily invalidated the cache to install a new version of
+# tv-extract... most of the build before this changes very infrequently
+RUN echo "1"; pip install --no-cache-dir tv-extract
 
 ADD docker-entry-point.sh /docker-entry-point.sh
 
